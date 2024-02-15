@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Reservation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional CSS styles */
+        .modal-header {
+            display: block;
+        }
+
+        .modal-header h5 {
+            display: inline-block;
+        }
+
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomReservationModal">
+        Reserve Room
+    </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myBookingsModal">
+        My Bookings
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="roomReservationModal" tabindex="-1" role="dialog"
+        aria-labelledby="roomReservationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roomReservationModalLabel">Available Rooms</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>เลขห้อง</th>
+                                <th>ชื่อห้อง</th>
+                                <th>อาคาร</th>
+                                <th>สถานะ</th>
+                                <th>ประเภทห้อง</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample data, replace with dynamic data if needed -->
+                            <tr>
+                                <td>1</td>
+                                <td>101</td>
+                                <td>ห้องประชุมย่อย</td>
+                                <td>อาคารคณะวิศวกรรมศาสตร์</td>
+                                <td>ว่าง</td>
+                                <td>เพื่อการเรียนรู้</td>
+                                <td>
+                                    <button class="btn btn-success reserve-btn" data-toggle="modal" data-target="#roomDetailModal">Reserve</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>201</td>
+                                <td>ห้องปรึกษา A1</td>
+                                <td>อาคารศูนย์การเรียนรู้กรมหลวงนราธิวาสราชนครินทร์</td>
+                                <td>ว่าง</td>
+                                <td>เพื่อการเรียนรู้</td>
+                                <td>
+                                    <button class="btn btn-success reserve-btn" data-toggle="modal" data-target="#roomDetailModal">Reserve</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>203</td>
+                                <td>ห้องปรึกษา A2</td>
+                                <td>อาคารศูนย์การเรียนรู้กรมหลวงนราธิวาสราชนครินทร์</td>
+                                <td>ว่าง</td>
+                                <td>เพื่อการเรียนรู้</td>
+                                <td>
+                                    <button class="btn btn-success reserve-btn" data-toggle="modal" data-target="#roomDetailModal">Reserve</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>203</td>
+                                <td>ห้องคาราโอเกะ 1</td>
+                                <td>ที่ไหนไม่รู้</td>
+                                <td>ว่าง</td>
+                                <td>เพื่อความบันเทิง</td>
+                                <td>
+                                    <button class="btn btn-success reserve-btn" data-toggle="modal" data-target="#roomDetailModal">Reserve</button>
+                                </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Modal for Room Details -->
+    <div class="modal fade" id="roomDetailModal" tabindex="-1" role="dialog" aria-labelledby="roomDetailModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roomDetailModalLabel">Room Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Room image will be displayed here -->
+                            <img src="static/img1.png" class="img-fluid" alt="Room Image">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Select Time Slot</h5>
+                            <div class="form-group">
+                                <select class="form-control" id="timeSlotSelect">
+                                    <option value="09:00-12:00">09:00 - 12:00</option>
+                                    <option value="12:00-15:00">12:00 - 15:00</option>
+                                    <option value="15:00-18:00">15:00 - 18:00</option>
+                                    <option value="18:00-21:00">18:00 - 21:00</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="confirmReservationButton">Reserve Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myBookingsModal" tabindex="-1" role="dialog" aria-labelledby="myBookingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myBookingsModalLabel">My Bookings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>รหัสการจอง</th>
+                                    <th>ชื่อห้อง</th>
+                                    <th>ระยะเวลา</th>
+                                    <th>จองเมื่อ</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample data, replace with dynamic data if needed -->
+                                <tr>
+                                    <td>EGR15267</td>
+                                    <td>ห้องประชุมย่อย</td>
+                                    <td>MO 09:00-12:00</td>
+                                    <td>12:56</td>
+                                    <td>
+                                        <button class="btn btn-danger" id="confirmDeleteButton">cancel bookings</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EKR15267</td>
+                                    <td>ห้องปรึกษา A1</td>
+                                    <td>TU 09:00-12:00</td>
+                                    <td>12:56</td>
+                                    <td>
+                                        <button class="btn btn-danger" id="confirmDeleteButton">cancel bookings</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Event listener for reserve button
+            $('.reserve-btn').click(function () {
+                // Dynamically update modal content when reserve button is clicked
+                $('#roomDetailModal').modal('show');
+            });
+
+            // Event listener for confirming reservation
+            $('#confirmReservationButton').click(function () {
+                var selectedTimeSlot = $('#timeSlotSelect').val();
+                // You can implement reservation logic here
+                // For now, let's just display a message
+                alert('Room reserved for ' + selectedTimeSlot);
+                // Close the modal
+                $('#roomDetailModal').modal('hide');
+            });
+
+            $('#confirmDeleteButton').click(function () {
+                var selectedTimeSlot = $('#timeSlotSelect').val();
+                // You can implement reservation logic here
+                // For now, let's just display a message
+                alert('canceled');
+                // Close the modal
+                $('#myBookingsModal').modal('hide');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
