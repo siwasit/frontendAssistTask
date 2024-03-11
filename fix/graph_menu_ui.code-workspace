@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../Project/graph_menu_ui"
+		},
+		{
+			"name": "Circular-Full-design",
+			"path": "Circular-Full-design"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Circular-Full-design"
+	}
+}
